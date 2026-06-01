@@ -14,7 +14,7 @@ body{
 
 .card{
     background:#1e1e1e;
-    max-width:600px;
+    max-width:650px;
     margin:auto;
     padding:20px;
     border-radius:12px;
@@ -33,7 +33,7 @@ button{
 
 <h1>🌎🥊 LifeSimm</h1>
 
-<!-- START -->
+<!-- START SCREEN -->
 <div id="startScreen">
     <h3>Create Your Life</h3>
 
@@ -52,7 +52,7 @@ button{
     <button onclick="startGame()">▶ Start Life</button>
 </div>
 
-<!-- GAME -->
+<!-- GAME SCREEN -->
 <div class="card" id="game">
 
     <h2>👤 Player</h2>
@@ -65,12 +65,11 @@ button{
     <p>Health: <span id="health">100</span>%</p>
 
     <h3>🥊 Boxing Career</h3>
-
     <p>Rank: <span id="rank">Amateur</span></p>
 
     <button onclick="train()">🏋️ Train</button>
     <button onclick="fight()">🥊 Fight</button>
-    <button onclick="promote()">🏆 Try Upgrade Rank</button>
+    <button onclick="promote()">🏆 Promote</button>
 
     <h3>👨‍👩‍👧 Family</h3>
 
@@ -79,11 +78,26 @@ button{
     <p>Grandparents: <span id="grandparents">4</span></p>
 
     <h3>⏭ Life</h3>
-
     <button onclick="nextYear()">Next Year</button>
 
 </div>
 
 <script>
 
-// =================
+// ================= VARIABLES =================
+let gender = "";
+let country = "";
+
+let age = 0;
+let money = 0;
+let health = 100;
+
+let rank = "Amateur";
+
+let family = {
+    parents: 2,
+    siblings: 6,
+    grandparents: 4
+};
+
+// ================= START GAME =================
