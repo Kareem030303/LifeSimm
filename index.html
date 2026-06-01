@@ -1,62 +1,122 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>LifeSimm</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>LifeSimm 🧬</title>
+
+  <style>
+    body {
+      font-family: Arial;
+      background: #0b0f19;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .card {
+      background: #111827;
+      padding: 20px;
+      border-radius: 10px;
+      width: 300px;
+      margin: auto;
+      margin-top: 20px;
+    }
+
+    button {
+      padding: 10px 15px;
+      margin-top: 20px;
+      cursor: pointer;
+      border: none;
+      border-radius: 6px;
+    }
+  </style>
 </head>
 
 <body>
 
-  <h1>LifeSimm 🧬</h1>
+<h1>LifeSimm 🧬</h1>
 
-  <div id="stats"></div>
+<div class="card" id="stats"></div>
 
-  <button onclick="nextYear()">Next Year ⏭️</button>
+<button onclick="nextYear()">Next Year ⏭️</button>
 
-  <script src="script.js"></script>
+<script>
+  // =========================
+  // 🧍 YOUR FIRST LIFE OBJECT
+  // =========================
+  let player = {
+    name: "Alex",
+    age: 10,
+    health: 100,
+    happiness: 70,
+    alive: true,
+
+    family: {
+      parents: ["Mom", "Dad"],
+      siblings: ["Brother"],
+      grandparents: ["Grandma"]
+    }
+  };
+
+  // =========================
+  // 🖥️ UPDATE SCREEN
+  // =========================
+  function updateScreen() {
+    document.getElementById("stats").innerHTML = `
+      <h2>${player.name}</h2>
+      <p><b>Age:</b> ${player.age}</p>
+      <p><b>Health:</b> ${player.health}</p>
+      <p><b>Happiness:</b> ${player.happiness}</p>
+      <p><b>Status:</b> ${player.alive ? "Alive 🧬" : "Passed 🕯️"}</p>
+
+      <hr>
+
+      <p><b>Family</b></p>
+      <p>Parents: ${player.family.parents.join(", ")}</p>
+      <p>Siblings: ${player.family.siblings.join(", ")}</p>
+      <p>Grandparents: ${player.family.grandparents.join(", ")}</p>
+    `;
+  }
+
+  // =========================
+  // ⏳ TIME SYSTEM (NEXT YEAR)
+  // =========================
+  function nextYear() {
+    if (!player.alive) return;
+
+    player.age++;
+
+    // aging effect
+    if (player.age > 40) {
+      player.health -= 3;
+    }
+
+    // random life twist 🎲
+    let eventRoll = Math.random();
+
+    if (eventRoll < 0.3) {
+      player.happiness += 5;
+    } else if (eventRoll < 0.6) {
+      player.happiness -= 5;
+    } else {
+      player.health -= 2;
+    }
+
+    // passing system 🕯️
+    if (player.age > 75 && Math.random() < 0.25) {
+      player.alive = false;
+    }
+
+    // clamp values
+    player.health = Math.max(0, player.health);
+    player.happiness = Math.max(0, Math.min(100, player.happiness));
+
+    updateScreen();
+  }
+
+  // start game
+  updateScreen();
+</script>
+
 </body>
 </html>
-body {
-  font-family: Arial;
-  background: #0b0f19;
-  color: white;
-  text-align: center;
-}
-
-button {
-  padding: 10px 20px;
-  margin-top: 20px;
-  cursor: pointer;
-let player = {
-  name: "Alex",
-  age: 10,
-  health: 100,
-  happiness: 70,
-  alive: true
-
-function nextYear() {
-  player.age++;
-
-  // natural aging
-  if (player.age > 50) {
-    player.health -= 5;
-  }
-
-  // check death
-  if (player.health <= 0) {
-    player.alive = false;
-  }
-
-  updateScreen();
-
-      function updateScreen() {
-  document.getElementById("stats").innerHTML = `
-    <p>Name: ${player.name}</p>
-    <p>Age: ${player.age}</p>
-    <p>Health: ${player.health}</p>
-    <p>Happiness: ${player.happiness}</p>
-    <p>Status: ${player.alive ? "Alive 🧬" : "Passed 🕯️"}</p>
-  `;
-}
-
-updateScreen();
