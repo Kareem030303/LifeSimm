@@ -47,6 +47,15 @@ button{
     <p>Money: $<span id="money">0</span></p>
     <p>Health: <span id="health">100</span>%</p>
 
+    <h3>Choose Career</h3>
+
+    <button onclick="chooseCareer('boxer')">🥊 Boxer</button>
+    <button onclick="chooseCareer('student')">🎓 Student</button>
+    <button onclick="chooseCareer('worker')">💼 Worker</button>
+    <button onclick="chooseCareer('criminal')">⚠️ Risky Path</button>
+
+    <br><br>
+
     <button onclick="nextYear()">⏭ Next Year</button>
 
 </div>
@@ -56,32 +65,30 @@ button{
 let age = 0;
 let money = 0;
 let health = 100;
+let career = "none";
 
 function startGame(){
     document.getElementById("startScreen").style.display = "none";
     document.getElementById("game").style.display = "block";
 }
 
-function nextYear(){
+function chooseCareer(type){
+    career = type;
 
-    age++;
-
-    money += Math.floor(Math.random() * 2000);
-
-    health -= Math.floor(Math.random() * 5);
-
-    if(health < 0) health = 0;
-
-    document.getElementById("age").innerText = age;
-    document.getElementById("money").innerText = money;
-    document.getElementById("health").innerText = health;
-
+    if(type === "boxer"){
+        alert("🥊 You became a Boxer!");
+    }
+    else if(type === "student"){
+        alert("🎓 You became a Student!");
+    }
+    else if(type === "worker"){
+        alert("💼 You got a Job!");
+    }
+    else if(type === "criminal"){
+        alert("⚠️ Risky path chosen...");
+    }
 }
 
-</script>
-
-</body>
-</html>
 function nextYear(){
 
     age++;
@@ -89,37 +96,47 @@ function nextYear(){
     // base income
     money += Math.floor(Math.random() * 2000);
 
-    // health slowly changes
-    health -= Math.floor(Math.random() * 5);
+    // career effects
+    if(career === "boxer"){
+        money += 1000;
+        health += 2;
+    }
+    else if(career === "student"){
+        money += 300;
+    }
+    else if(career === "worker"){
+        money += 800;
+    }
+    else if(career === "criminal"){
+        money += 2000;
+        health -= 5;
+    }
 
-    // 🎲 RANDOM LIFE EVENTS
+    // random events
     let eventRoll = Math.random();
 
     if(eventRoll < 0.25){
         money += 500;
-        alert("💼 You found a part-time job! +$500");
+        alert("💼 Job opportunity!");
     }
     else if(eventRoll < 0.45){
         health -= 10;
-        alert("🤒 You got sick this year. -10 health");
+        alert("🤒 You got sick!");
     }
     else if(eventRoll < 0.60){
         money += 2000;
-        alert("🎉 You won a small lottery! +$2000");
+        alert("🎉 Lottery win!");
     }
     else if(eventRoll < 0.75){
         money -= 1000;
-        alert("💸 You had unexpected expenses. -$1000");
+        alert("💸 Unexpected expense!");
     }
     else if(eventRoll < 0.85){
         health += 5;
-        alert("🏋️ You started working out. +5 health");
-    }
-    else{
-        alert("📅 A normal year passed...");
+        alert("🏋️ Training paid off!");
     }
 
-    // clamp values
+    // clamp
     if(health > 100) health = 100;
     if(health < 0) health = 0;
     if(money < 0) money = 0;
@@ -128,44 +145,9 @@ function nextYear(){
     document.getElementById("age").innerText = age;
     document.getElementById("money").innerText = money;
     document.getElementById("health").innerText = health;
-function chooseCareer(type){
-
-    career = type;
-
-    if(type === "boxer"){
-        alert("🥊 You became a Boxer! More health training, risky money gains.");
-    }
-    else if(type === "student"){
-        alert("🎓 You became a Student! Better future chances, low money now.");
-    }
-    else if(type === "worker"){
-        alert("💼 You got a Job! Stable income starts now.");
-    }
-    else if(type === "criminal"){
-        alert("⚠️ You chose a risky path... higher money, higher danger.");
-    }
-
-}<h3>Choose Career</h3>
-
-<button onclick="chooseCareer('boxer')">🥊 Boxer</button>
-<button onclick="chooseCareer('student')">🎓 Student</button>
-<button onclick="chooseCareer('worker')">💼 Worker</button>
-<button onclick="chooseCareer('criminal')">⚠️ Risky Path</button>if(career === "boxer"){
-    money += Math.floor(Math.random() * 1500);
-    health += 2;
 }
 
-else if(career === "student"){
-    money += Math.floor(Math.random() * 500);
-    health += 1;
-}
+</script>
 
-else if(career === "worker"){
-    money += Math.floor(Math.random() * 1200);
-}
-
-else if(career === "criminal"){
-    money += Math.floor(Math.random() * 2500);
-    health -= Math.floor(Math.random() * 8);
-}
-
+</body>
+</html>
