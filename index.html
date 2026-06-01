@@ -2,13 +2,83 @@
 <html>
 <head>
 <title>LifeSimm</title>
+
+<style>
+body{
+    background:#0f0f0f;
+    color:white;
+    font-family:Arial;
+    text-align:center;
+    padding:30px;
+}
+
+.card{
+    background:#1e1e1e;
+    max-width:500px;
+    margin:auto;
+    padding:20px;
+    border-radius:12px;
+    display:none;
+}
+
+button{
+    padding:12px 20px;
+    font-size:16px;
+    margin-top:10px;
+    cursor:pointer;
+}
+</style>
 </head>
-<body style="background:#111;color:white;font-family:Arial;text-align:center;padding:30px;">
+
+<body>
 
 <h1>🌎 LifeSimm</h1>
-<p>Life simulator is loading...</p>
 
-<button onclick="alert('Game started!')">Start Life</button>
+<div id="startScreen">
+    <p>Welcome to your life.</p>
+    <button onclick="startGame()">▶ Start Life</button>
+</div>
+
+<div class="card" id="game">
+
+    <h2>👤 Player</h2>
+
+    <p>Age: <span id="age">0</span></p>
+    <p>Money: $<span id="money">0</span></p>
+    <p>Health: <span id="health">100</span>%</p>
+
+    <button onclick="nextYear()">⏭ Next Year</button>
+
+</div>
+
+<script>
+
+let age = 0;
+let money = 0;
+let health = 100;
+
+function startGame(){
+    document.getElementById("startScreen").style.display = "none";
+    document.getElementById("game").style.display = "block";
+}
+
+function nextYear(){
+
+    age++;
+
+    money += Math.floor(Math.random() * 2000);
+
+    health -= Math.floor(Math.random() * 5);
+
+    if(health < 0) health = 0;
+
+    document.getElementById("age").innerText = age;
+    document.getElementById("money").innerText = money;
+    document.getElementById("health").innerText = health;
+
+}
+
+</script>
 
 </body>
 </html>
