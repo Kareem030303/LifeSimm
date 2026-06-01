@@ -82,3 +82,51 @@ function nextYear(){
 
 </body>
 </html>
+function nextYear(){
+
+    age++;
+
+    // base income
+    money += Math.floor(Math.random() * 2000);
+
+    // health slowly changes
+    health -= Math.floor(Math.random() * 5);
+
+    // 🎲 RANDOM LIFE EVENTS
+    let eventRoll = Math.random();
+
+    if(eventRoll < 0.25){
+        money += 500;
+        alert("💼 You found a part-time job! +$500");
+    }
+    else if(eventRoll < 0.45){
+        health -= 10;
+        alert("🤒 You got sick this year. -10 health");
+    }
+    else if(eventRoll < 0.60){
+        money += 2000;
+        alert("🎉 You won a small lottery! +$2000");
+    }
+    else if(eventRoll < 0.75){
+        money -= 1000;
+        alert("💸 You had unexpected expenses. -$1000");
+    }
+    else if(eventRoll < 0.85){
+        health += 5;
+        alert("🏋️ You started working out. +5 health");
+    }
+    else{
+        alert("📅 A normal year passed...");
+    }
+
+    // clamp values
+    if(health > 100) health = 100;
+    if(health < 0) health = 0;
+    if(money < 0) money = 0;
+
+    // update UI
+    document.getElementById("age").innerText = age;
+    document.getElementById("money").innerText = money;
+    document.getElementById("health").innerText = health;
+
+}
