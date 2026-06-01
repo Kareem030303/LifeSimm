@@ -1,21 +1,89 @@
 <!DOCTYPE html>
 <html>
+<head>
+<title>LifeSimm</title>
+
+<style>
+body{
+    background:#0f0f0f;
+    color:white;
+    font-family:Arial;
+    text-align:center;
+    padding:30px;
+}
+
+.card{
+    background:#1e1e1e;
+    max-width:600px;
+    margin:auto;
+    padding:20px;
+    border-radius:12px;
+    display:none;
+}
+
+button{
+    padding:10px 15px;
+    margin:5px;
+    cursor:pointer;
+}
+</style>
+</head>
+
 <body>
 
-<h1>LifeSimm TEST</h1>
+<h1>🌎🥊 LifeSimm</h1>
 
-<button onclick="alert('Button works')">Click Me</button>
+<!-- START -->
+<div id="startScreen">
+    <h3>Create Your Life</h3>
+
+    <p>Gender:</p>
+    <button onclick="gender='male'">Male</button>
+    <button onclick="gender='female'">Female</button>
+    <button onclick="gender='other'">Other</button>
+
+    <p>Country:</p>
+    <button onclick="country='USA'">USA</button>
+    <button onclick="country='UK'">UK</button>
+    <button onclick="country='Ireland'">Ireland</button>
+    <button onclick="country='Japan'">Japan</button>
+
+    <br><br>
+    <button onclick="startGame()">▶ Start Life</button>
+</div>
+
+<!-- GAME -->
+<div class="card" id="game">
+
+    <h2>👤 Player</h2>
+
+    <p>Gender: <span id="genderDisplay">-</span></p>
+    <p>Country: <span id="countryDisplay">-</span></p>
+
+    <p>Age: <span id="age">0</span></p>
+    <p>Money: $<span id="money">0</span></p>
+    <p>Health: <span id="health">100</span>%</p>
+
+    <h3>🥊 Boxing Career</h3>
+
+    <p>Rank: <span id="rank">Amateur</span></p>
+
+    <button onclick="train()">🏋️ Train</button>
+    <button onclick="fight()">🥊 Fight</button>
+    <button onclick="promote()">🏆 Try Upgrade Rank</button>
+
+    <h3>👨‍👩‍👧 Family</h3>
+
+    <p>Parents: <span id="parents">2</span></p>
+    <p>Siblings: <span id="siblings">0</span></p>
+    <p>Grandparents: <span id="grandparents">4</span></p>
+
+    <h3>⏭ Life</h3>
+
+    <button onclick="nextYear()">Next Year</button>
+
+</div>
 
 <script>
-console.log("JS is running");
-alert("Page loaded");
-</script>
-<h3>👨‍👩‍👧 Family</h3>
 
-<p>Parents: <span id="parents">2</span></p>
-<p>Siblings: <span id="siblings">0</span></p>
-<p>Grandparents: <span id="grandparents">4</span></p>
-<p>Cousins: <span id="cousins">0</span></p>
-<p>Children: <span id="children">0</span></p>
-</body>
-</html>
+// =================
