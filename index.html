@@ -54,6 +54,13 @@ button{
     <button onclick="chooseCareer('worker')">💼 Worker</button>
     <button onclick="chooseCareer('criminal')">⚠️ Risky Path</button>
 
+    <h3>Life Choices</h3>
+
+    <button onclick="goToSchool()">📚 Study</button>
+    <button onclick="workHard()">💼 Work Hard</button>
+    <button onclick="rest()">😴 Rest</button>
+    <button onclick="takeRisk()">🎲 Take Risk</button>
+
     <br><br>
 
     <button onclick="nextYear()">⏭ Next Year</button>
@@ -74,29 +81,15 @@ function startGame(){
 
 function chooseCareer(type){
     career = type;
-
-    if(type === "boxer"){
-        alert("🥊 You became a Boxer!");
-    }
-    else if(type === "student"){
-        alert("🎓 You became a Student!");
-    }
-    else if(type === "worker"){
-        alert("💼 You got a Job!");
-    }
-    else if(type === "criminal"){
-        alert("⚠️ Risky path chosen...");
-    }
+    alert("Career chosen: " + type);
 }
 
 function nextYear(){
 
     age++;
 
-    // base income
     money += Math.floor(Math.random() * 2000);
 
-    // career effects
     if(career === "boxer"){
         money += 1000;
         health += 2;
@@ -112,7 +105,6 @@ function nextYear(){
         health -= 5;
     }
 
-    // random events
     let eventRoll = Math.random();
 
     if(eventRoll < 0.25){
@@ -136,48 +128,30 @@ function nextYear(){
         alert("🏋️ Training paid off!");
     }
 
-    // clamp
     if(health > 100) health = 100;
     if(health < 0) health = 0;
     if(money < 0) money = 0;
 
-    // update UI
     document.getElementById("age").innerText = age;
     document.getElementById("money").innerText = money;
     document.getElementById("health").innerText = health;
 }
 
-</scriptlet gender = "";
-let country = "";
-let relationship = "single";
-let family = {
-    parents: true,
-    siblings: 0
-};>
-
-};
-</body>
-</html>
-<h3>Life Choices</h3>
-
-<button onclick="goToSchool()">📚 Study</button>
-<button onclick="workHard()">💼 Work Hard</button>
-<button onclick="rest()">😴 Rest</button>
-<button onclick="takeRisk()">🎲 Take Risk</button> function goToSchool(){
+function goToSchool(){
     money -= 200;
     health += 2;
-    alert("📚 You studied. Future improved slightly.");
+    alert("📚 You studied.");
 }
 
 function workHard(){
     money += 500;
     health -= 3;
-    alert("💼 You worked hard and earned money.");
+    alert("💼 You worked hard.");
 }
 
 function rest(){
     health += 5;
-    alert("😴 You rested and recovered.");
+    alert("😴 You rested.");
 }
 
 function takeRisk(){
@@ -189,4 +163,9 @@ function takeRisk(){
         health -= 5;
         alert("🎲 Risk failed...");
     }
-    }
+}
+
+</script>
+
+</body>
+</html>
