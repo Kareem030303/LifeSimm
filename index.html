@@ -147,7 +147,46 @@ function nextYear(){
     document.getElementById("health").innerText = health;
 }
 
-</script>
+</scriptlet gender = "";
+let country = "";
+let relationship = "single";
+let family = {
+    parents: true,
+    siblings: 0
+};>
 
+};
 </body>
 </html>
+<h3>Life Choices</h3>
+
+<button onclick="goToSchool()">📚 Study</button>
+<button onclick="workHard()">💼 Work Hard</button>
+<button onclick="rest()">😴 Rest</button>
+<button onclick="takeRisk()">🎲 Take Risk</button> function goToSchool(){
+    money -= 200;
+    health += 2;
+    alert("📚 You studied. Future improved slightly.");
+}
+
+function workHard(){
+    money += 500;
+    health -= 3;
+    alert("💼 You worked hard and earned money.");
+}
+
+function rest(){
+    health += 5;
+    alert("😴 You rested and recovered.");
+}
+
+function takeRisk(){
+    if(Math.random() < 0.5){
+        money += 2000;
+        alert("🎲 Big win!");
+    } else {
+        money -= 1000;
+        health -= 5;
+        alert("🎲 Risk failed...");
+    }
+    }
