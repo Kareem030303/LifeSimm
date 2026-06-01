@@ -128,5 +128,44 @@ function nextYear(){
     document.getElementById("age").innerText = age;
     document.getElementById("money").innerText = money;
     document.getElementById("health").innerText = health;
+function chooseCareer(type){
 
+    career = type;
+
+    if(type === "boxer"){
+        alert("🥊 You became a Boxer! More health training, risky money gains.");
+    }
+    else if(type === "student"){
+        alert("🎓 You became a Student! Better future chances, low money now.");
+    }
+    else if(type === "worker"){
+        alert("💼 You got a Job! Stable income starts now.");
+    }
+    else if(type === "criminal"){
+        alert("⚠️ You chose a risky path... higher money, higher danger.");
+    }
+
+}<h3>Choose Career</h3>
+
+<button onclick="chooseCareer('boxer')">🥊 Boxer</button>
+<button onclick="chooseCareer('student')">🎓 Student</button>
+<button onclick="chooseCareer('worker')">💼 Worker</button>
+<button onclick="chooseCareer('criminal')">⚠️ Risky Path</button>if(career === "boxer"){
+    money += Math.floor(Math.random() * 1500);
+    health += 2;
 }
+
+else if(career === "student"){
+    money += Math.floor(Math.random() * 500);
+    health += 1;
+}
+
+else if(career === "worker"){
+    money += Math.floor(Math.random() * 1200);
+}
+
+else if(career === "criminal"){
+    money += Math.floor(Math.random() * 2500);
+    health -= Math.floor(Math.random() * 8);
+}
+
