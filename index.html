@@ -1,103 +1,62 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>LifeSimm</title>
-
-<style>
-body{
-    background:#0f0f0f;
-    color:white;
-    font-family:Arial;
-    text-align:center;
-    padding:30px;
-}
-
-.card{
-    background:#1e1e1e;
-    max-width:650px;
-    margin:auto;
-    padding:20px;
-    border-radius:12px;
-    display:none;
-}
-
-button{
-    padding:10px 15px;
-    margin:5px;
-    cursor:pointer;
-}
-</style>
+  <title>LifeSimm</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<h1>🌎🥊 LifeSimm</h1>
+  <h1>LifeSimm 🧬</h1>
 
-<!-- START SCREEN -->
-<div id="startScreen">
-    <h3>Create Your Life</h3>
+  <div id="stats"></div>
 
-    <p>Gender:</p>
-    <button onclick="gender='male'">Male</button>
-    <button onclick="gender='female'">Female</button>
-    <button onclick="gender='other'">Other</button>
+  <button onclick="nextYear()">Next Year ⏭️</button>
 
-    <p>Country:</p>
-    <button onclick="country='USA'">USA</button>
-    <button onclick="country='UK'">UK</button>
-    <button onclick="country='Ireland'">Ireland</button>
-    <button onclick="country='Japan'">Japan</button>
+  <script src="script.js"></script>
+</body>
+</html>
+body {
+  font-family: Arial;
+  background: #0b0f19;
+  color: white;
+  text-align: center;
+}
 
-    <br><br>
-    <button onclick="startGame()">▶ Start Life</button>
-</div>
+button {
+  padding: 10px 20px;
+  margin-top: 20px;
+  cursor: pointer;
+let player = {
+  name: "Alex",
+  age: 10,
+  health: 100,
+  happiness: 70,
+  alive: true
 
-<!-- GAME SCREEN -->
-<div class="card" id="game">
+function nextYear() {
+  player.age++;
 
-    <h2>👤 Player</h2>
+  // natural aging
+  if (player.age > 50) {
+    player.health -= 5;
+  }
 
-    <p>Gender: <span id="genderDisplay">-</span></p>
-    <p>Country: <span id="countryDisplay">-</span></p>
+  // check death
+  if (player.health <= 0) {
+    player.alive = false;
+  }
 
-    <p>Age: <span id="age">0</span></p>
-    <p>Money: $<span id="money">0</span></p>
-    <p>Health: <span id="health">100</span>%</p>
+  updateScreen();
 
-    <h3>🥊 Boxing Career</h3>
-    <p>Rank: <span id="rank">Amateur</span></p>
+      function updateScreen() {
+  document.getElementById("stats").innerHTML = `
+    <p>Name: ${player.name}</p>
+    <p>Age: ${player.age}</p>
+    <p>Health: ${player.health}</p>
+    <p>Happiness: ${player.happiness}</p>
+    <p>Status: ${player.alive ? "Alive 🧬" : "Passed 🕯️"}</p>
+  `;
+}
 
-    <button onclick="train()">🏋️ Train</button>
-    <button onclick="fight()">🥊 Fight</button>
-    <button onclick="promote()">🏆 Promote</button>
-
-    <h3>👨‍👩‍👧 Family</h3>
-
-    <p>Parents: <span id="parents">2</span></p>
-    <p>Siblings: <span id="siblings">0</span></p>
-    <p>Grandparents: <span id="grandparents">4</span></p>
-
-    <h3>⏭ Life</h3>
-    <button onclick="nextYear()">Next Year</button>
-
-</div>
-
-<script>
-
-// ================= VARIABLES =================
-let gender = "";
-let country = "";
-
-let age = 0;
-let money = 0;
-let health = 100;
-
-let rank = "Amateur";
-
-let family = {
-    parents: 2,
-    siblings: 6,
-    grandparents: 4
-};
-
-// ================= START GAME =================
+updateScreen();
