@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>LifeSimm v2 🧬</title>
+
+<style>
+body {
+  font-family: Arial;
+  background: #0b0f19;
+  color: white;
+  text-align: center;
+  padding: 10px;
+}
+
+.container {
+  display: flex;
+  gap: 10px;
+}
+
+.panel {
+  flex: 1;
+  background: #111827;
+  padding: 10px;
+  border-radius: 10px;
+  height: 85vh;
+  overflow-y: auto;
+}
+
+button {
+  padding: 8px;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.person {
+  background: #1f2937;
+  padding: 8px;
+  margin: 5px;
+  border-radius: 8px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>LifeSimm v2 🧬🌍</h1>
+
+<div>
+  🌍 Country:
+  <select id="country">
+    <option>USA</option>
+    <option>UK</option>
+    <option>Brazil</option>
+    <option>Mexico</option>
+  </select>
+
+  <button onclick="nextYear()">Next Year ⏭️</button>
+  <button onclick="addPerson()">Add Person ➕</button>
+</div>
+
+<div class="container">
+
+  <div class="panel">
+    <h2>Population</h2>
+    <div id="people"></div>
+  </div>
+
+  <div class="panel">
+    <h2>Story Log 📅</h2>
+    <div id="log"></div>
+  </div>
+
+</div>
+
+<script>
+
+// ======================
+// 🌍 WORLD STATE
+// ======================
+let year = 1;
+
+let names = ["Alex", "Jordan", "Mia", "Chris", "Taylor", "Sam"];
+
+let people = [];
+
+// ======================
+// 🧍 CREATE PERSON
+// ======================
+function createPerson() {
+  let name = names[Math.floor(Math.random() * names.length)];
+
+  return {
+    name: name,
+    age: Math.floor(Math.random() * 30) + 10,
+    health: 100,
+    happiness: 70,
+    alive: true,
+    country: document.getElementById("country").value,
+
+    schoolStage: "none",
+
+    family: {
+      partner: null,
+      parents: ["Parent1", "Parent2"],
+      siblings: ["Sibling"]
+    }
+  };
+}
+
+// start population
+for (let i = 0; i < 3; i++) {
+  people.push(createPerson());
+}
+
+// ======================
+// 🖥️ RENDER PEOPLE
+// ======================
+function render() {
+  let html = "";
+
+  people.forEach((p, index) => {
+
+    // school system 🏫
+    if (p.age < 13) p.schoolStage = "Primary School";
+    else if (p.age < 18) p.schoolStage = "High School";
+    else if (p.age < 25) p.schoolStage = "College/Work";
+    else p.schoolStage = "Adult Life";
+
+    html += `
+      <div class="person">
+        <b>${p.name}</b> (${p.country})<br>
+        Age: ${p.age}<br>
+        Health: ${p.health}<br>
+        Happiness: ${p.happiness}<br>
+        Stage: ${p.schoolStage}<br>
+        Partner: ${p.family.partner || "None"}<br>
+
+        <button onclick="date(${index})">Dating Event 💔</button>
+      </div>
+    `;
+  });
+
+  document.getElementById("people").innerHTML = html;
+}
+
+// ======================
+// 💔 DATING SYSTEM
+// ======================
+function date(i) {
+  let p = people[i];
+
+  if (people.length < 2) return;
+
+  let partner = people[Math.floor(Math.random() * people.length)];
+
+  if (partner === p) return;
+
+  let chance = Math.random();
+
+  if (chance > 0.5) {
+    p.family.partner = partner.name;
+    partner.family.partner = p.name;
+
+    log(`${p.name} started dating ${partner.name} 💘`);
+  } else {
+    p.happiness -= 5;
+    log(`${p.name} had a failed dating attempt 💔`);
+  }
+
+  render();
+}
+
+// ======================
+// ⏳ YEAR SYSTEM
+// ======================
+function nextYear() {
+  year++;
+
+  people.forEach(p => {
+
+    if (!p.alive) return;
+
+    p.age++;
+
+    // aging effects
+    if (p.age > 40) p.health -= 2;
+
+    // random life event 🎲
+    let r = Math.random();
+
+    if (r < 0.3) p.happiness += 5;
+    else if (r < 0.6) p.happiness -= 5;
+    else p.health -= 3;
+
+    // passing system 🕯️
+    if (p.age > 75 && Math.random() < 0.2) {
+      p.alive = false;
+      log(`${p.name} has passed away 🕯️`);
+    }
+
+  });
+
+  log(`Year ${year} has passed 🌍`);
+  render();
+}
+
+// ======================
+// 📅 STORY LOG
+// ======================
+function log(text) {
+  document.getElementById("log").innerHTML =
+    `<p>${text}</p>` + document.getElementById("log").innerHTML;
+}
+
+// ======================
+render();
+
+</script>
+
+</body>
+</html>
