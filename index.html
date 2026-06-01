@@ -1,16 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>LifeSimm</title>
+
+<style>
+body{
+    background:#0f0f0f;
+    color:white;
+    font-family:Arial;
+    text-align:center;
+    padding:30px;
+}
+
+.card{
+    background:#1e1e1e;
+    max-width:500px;
+    margin:auto;
+    padding:20px;
+    border-radius:12px;
+    display:none;
+}
+
+button{
+    padding:12px 20px;
+    font-size:16px;
+    margin:8px;
+    cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<h1>🌎 LifeSimm</h1>
+
+<!-- START SCREEN -->
+<div id="startScreen">
+    <p>Welcome to your life.</p>
+    <button onclick="startGame()">▶ Start Life</button>
+</div>
+
+<!-- GAME SCREEN -->
+<div class="card" id="game">
+
+    <h2>👤 Player</h2>
+
+    <p>Age: <span id="age">0</span></p>
+    <p>Money: $<span id="money">0</span></p>
+    <p>Health: <span id="health">100</span>%</p>
+
+    <h3>Career</h3>
+
+    <button onclick="chooseCareer('boxer')">🥊 Boxer</button>
+    <button onclick="chooseCareer('student')">🎓 Student</button>
+    <button onclick="chooseCareer('worker')">💼 Worker</button>
+    <button onclick="chooseCareer('criminal')">⚠️ Risky Path</button>
+
+    <h3>Life Actions</h3>
+
+    <button onclick="study()">📚 Study</button>
+    <button onclick="work()">💼 Work</button>
+    <button onclick="rest()">😴 Rest</button>
+    <button onclick="risk()">🎲 Risk</button>
+
+    <br><br>
+
+    <button onclick="nextYear()">⏭ Next Year</button>
+
+    <h3>Relationships</h3>
+
+    <button onclick="findPartner()">❤️ Find Partner</button>
+
+    <p>Relationship: <span id="relStatus">Single</span></p>
+
+</div>
+
 <script>
 
-// 1. VARIABLES (top)
+// 🧠 VARIABLES
 let age = 0;
 let money = 0;
 let health = 100;
-let gender = "";
-let country = "";
+let career = "none";
 let relationship = "single";
 
-// 2. FUNCTIONS
-function startGame(){ }
-function nextYear(){ }
-function findPartner(){ }
+// ▶ START GAME
+function startGame(){
+    document.getElementById("startScreen").style.display = "none";
+    document.getElementById("game").style.display = "block";
+}
+
+// 💼 CAREER
+function chooseCareer(type){
+    career = type;
+    alert("Career chosen: " + type);
+}
+
+// ⏭ NEXT YEAR
+function nextYear(){
+
+    age++;
+
+    money += Math.floor(Math.random() * 1000);
+
+    if(career === "boxer"){
+        money += 800;
+        health += 2;
+    }
+    else if(career === "student"){
+        money += 200;
+    }
+    else if(career === "worker"){
+        money += 500;
+    }
+    else if(career === "criminal"){
+        money += 1200;
+        health -= 5;
+    }
+
+    let event = Math.random();
+
+    if(event < 0.25){
+        money += 300;
+        alert("💼 Opportunity!");
+    }
+    else if(event < 0.45){
+        health -= 10;
+        alert("🤒 Sick!");
+    }
+    else if(event < 0.60){
+        money += 1500;
+        alert("🎉 Win!");
+    }
+    else if(event < 0.75){
+        money -= 500;
+        alert("💸 Expense!");
+    }
+
+    if(health > 100) health = 100;
+    if(health < 0) health = 0;
+    if(money < 0) money = 0;
+
+    updateUI();
+}
+
+// 📊 UPDATE UI
+function updateUI(){
+    document.getElementById("age").innerText = age;
+    document.getElementById("money").innerText = money;
+    document.getElementById("health").innerText = health;
+    document.getElementById("relStatus").innerText = relationship;
+}
+
+// 📚 ACTIONS
+function study(){
+    money -= 100;
+    health += 2;
+    updateUI();
+}
+
+function work(){
+    money += 300;
+    health -= 2;
+    updateUI();
+}
+
+function rest(){
+    health += 5;
+    updateUI();
+}
+
+function risk(){
+    if(Math.random() < 0.5){
+        money += 1000;
+        alert("🎲 Win!");
+    } else {
+        money -= 500;
+        health -= 5;
+        alert("🎲 Loss!");
+    }
+    updateUI();
+}
+
+// ❤️ DATING
+function findPartner(){
+
+    if(relationship !== "single"){
+        alert("Already in a relationship.");
+        return;
+    }
+
+    if(Math.random() < 0.6){
+        relationship = "dating";
+        alert("❤️ You started dating someone!");
+    } else {
+        alert("💔 No match.");
+    }
+
+    updateUI();
+}
 
 </script>
+
+</body>
+</html>
