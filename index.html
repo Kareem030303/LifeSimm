@@ -1,0 +1,48 @@
+<!DOCTYPE html><html>
+<head>
+<title>Life Simulator</title><style>
+body{
+    background:#111;
+    color:white;
+    font-family:Arial;
+    text-align:center;
+    padding:20px;
+}
+
+.card{
+    background:#222;
+    max-width:500px;
+    margin:auto;
+    padding:20px;
+    border-radius:10px;
+}
+
+button{
+    padding:10px 20px;
+    font-size:18px;
+    margin:10px;
+    cursor:pointer;
+}
+</style></head><body><h1>🌎 Life Simulator</h1><div class="card"><h2 id="name">Alex</h2><p>Age: <span id="age">0</span></p>
+<p>Money: $<span id="money">0</span></p><button onclick="ageUp()">🎂 Age Up</button>
+
+</div><script>
+
+let age = 0;
+let money = 0;
+
+function ageUp(){
+
+    age++;
+
+    if(age >= 18){
+        money += Math.floor(Math.random() * 5000);
+    }
+
+    document.getElementById("age").innerText = age;
+    document.getElementById("money").innerText = money;
+
+}
+
+</script></body>
+</html>
