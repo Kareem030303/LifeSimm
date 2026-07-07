@@ -1,344 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>LifeSimm 🧬</title>
-
-  <style>
-    body {
-      font-family: Arial;
-      background: #0b0f19;
-      color: white;
-      text-align: center;
-      padding: 20px;
-    }
-
-    .card {
-      background: #111827;
-      padding: 20px;
-      border-radius: 10px;
-      width: 300px;
-      margin: auto;
-      margin-top: 20px;
-    }
-
-    button {
-      padding: 10px 15px;
-      margin-top: 20px;
-      cursor: pointer;
-      border: none;
-      border-radius: 6px;
-    }
-  </style>
+<title>LifeSim 2.0</title>
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<h1>LifeSimm 🧬</h1>
+<h1>🌎 LifeSim 2.0</h1>
 
-<div class="card" id="stats"></div>
+<div class="box">
 
-<button onclick="nextYear()">Next Year ⏭️</button>
+<h2>Create Your Avatar</h2>
 
-<script>
-  // =========================
-  // 🧍 YOUR FIRST LIFE OBJECT
-  // =========================
-  let player = {
-    name: "Alex",
-    age: 10,
-    health: 100,
-    happiness: 70,
-    alive: true,
+<input id="name" placeholder="Name">
 
-    family: {
-      parents: ["Mom", "Dad"],
-      siblings: ["Brother"],
-      grandparents: ["Grandma"]
-    }
-  };
+<select id="country">
+<option>United States</option>
+<option>Japan</option>
+<option>Brazil</option>
+<option>Mexico</option>
+<option>France</option>
+</select>
 
-  // =========================
-  // 🖥️ UPDATE SCREEN
-  // =========================
-  function updateScreen() {
-    document.getElementById("stats").innerHTML = `
-      <h2>${player.name}</h2>
-      <p><b>Age:</b> ${player.age}</p>
-      <p><b>Health:</b> ${player.health}</p>
-      <p><b>Happiness:</b> ${player.happiness}</p>
-      <p><b>Status:</b> ${player.alive ? "Alive 🧬" : "Passed 🕯️"}</p>
-
-      <hr>
-
-      <p><b>Family</b></p>
-      <p>Parents: ${player.family.parents.join(", ")}</p>
-      <p>Siblings: ${player.family.siblings.join(", ")}</p>
-      <p>Grandparents: ${player.family.grandparents.join(", ")}</p>
-    `;
-  }
-
-  // =========================
-  // ⏳ TIME SYSTEM (NEXT YEAR)
-  // =========================
-  function nextYear() {
-    if (!player.alive) return;
-
-    player.age++;
-
-    // aging effect
-    if (player.age > 40) {
-      player.health -= 3;
-    }
-
-    // random life twist 🎲
-    let eventRoll = Math.random();
-
-    if (eventRoll < 0.3) {
-      player.happiness += 5;
-    } else if (eventRoll < 0.6) {
-      player.happiness -= 5;
-    } else {
-      player.health -= 2;
-    }
-
-    // passing system 🕯️
-    if (player.age > 75 && Math.random() < 0.25) {
-      player.alive = false;
-    }
-
-    // clamp values
-    player.health = Math.max(0, player.health);
-    player.happiness = Math.max(0, Math.min(100, player.happiness));
-
-    updateScreen();
-  }
-
-  // start game
-  updateScreen();
-</script>
-
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>LifeSimm v2 🧬</title>
-
-<style>
-body {
-  font-family: Arial;
-  background: #0b0f19;
-  color: white;
-  text-align: center;
-  padding: 10px;
-}
-
-.container {
-  display: flex;
-  gap: 10px;
-}
-
-.panel {
-  flex: 1;
-  background: #111827;
-  padding: 10px;
-  border-radius: 10px;
-  height: 85vh;
-  overflow-y: auto;
-}
-
-button {
-  padding: 8px;
-  margin: 5px;
-  cursor: pointer;
-}
-
-.person {
-  background: #1f2937;
-  padding: 8px;
-  margin: 5px;
-  border-radius: 8px;
-}
-</style>
-</head>
-
-<body>
-
-<h1>LifeSimm v2 🧬🌍</h1>
-
-<div>
-  🌍 Country:
-  <select id="country">
-    <option>USA</option>
-    <option>UK</option>
-    <option>Brazil</option>
-    <option>Mexico</option>
-  </select>
-
-  <button onclick="nextYear()">Next Year ⏭️</button>
-  <button onclick="addPerson()">Add Person ➕</button>
-</div>
-
-<div class="container">
-
-  <div class="panel">
-    <h2>Population</h2>
-    <div id="people"></div>
-  </div>
-
-  <div class="panel">
-    <h2>Story Log 📅</h2>
-    <div id="log"></div>
-  </div>
+<button onclick="startLife()">Start Life</button>
 
 </div>
 
-<script>
 
-// ======================
-// 🌍 WORLD STATE
-// ======================
-let year = 1;
+<div class="box" id="life" style="display:none">
 
-let names = ["Alex", "Jordan", "Mia", "Chris", "Taylor", "Sam"];
+<h2 id="profile"></h2>
 
-let people = [];
+<p id="family"></p>
 
-// ======================
-// 🧍 CREATE PERSON
-// ======================
-function createPerson() {
-  let name = names[Math.floor(Math.random() * names.length)];
+<p id="stats"></p>
 
-  return {
-    name: name,
-    age: Math.floor(Math.random() * 30) + 10,
-    health: 100,
-    happiness: 70,
-    alive: true,
-    country: document.getElementById("country").value,
+<h3>📖 Life Story</h3>
 
-    schoolStage: "none",
+<div id="story"></div>
 
-    family: {
-      partner: null,
-      parents: ["Parent1", "Parent2"],
-      siblings: ["Sibling"]
-    }
-  };
-}
+<button onclick="ageUp()">Age Up</button>
 
-// start population
-for (let i = 0; i < 3; i++) {
-  people.push(createPerson());
-}
+</div>
 
-// ======================
-// 🖥️ RENDER PEOPLE
-// ======================
-function render() {
-  let html = "";
 
-  people.forEach((p, index) => {
-
-    // school system 🏫
-    if (p.age < 13) p.schoolStage = "Primary School";
-    else if (p.age < 18) p.schoolStage = "High School";
-    else if (p.age < 25) p.schoolStage = "College/Work";
-    else p.schoolStage = "Adult Life";
-
-    html += `
-      <div class="person">
-        <b>${p.name}</b> (${p.country})<br>
-        Age: ${p.age}<br>
-        Health: ${p.health}<br>
-        Happiness: ${p.happiness}<br>
-        Stage: ${p.schoolStage}<br>
-        Partner: ${p.family.partner || "None"}<br>
-
-        <button onclick="date(${index})">Dating Event 💔</button>
-      </div>
-    `;
-  });
-
-  document.getElementById("people").innerHTML = html;
-}
-
-// ======================
-// 💔 DATING SYSTEM
-// ======================
-function date(i) {
-  let p = people[i];
-
-  if (people.length < 2) return;
-
-  let partner = people[Math.floor(Math.random() * people.length)];
-
-  if (partner === p) return;
-
-  let chance = Math.random();
-
-  if (chance > 0.5) {
-    p.family.partner = partner.name;
-    partner.family.partner = p.name;
-
-    log(`${p.name} started dating ${partner.name} 💘`);
-  } else {
-    p.happiness -= 5;
-    log(`${p.name} had a failed dating attempt 💔`);
-  }
-
-  render();
-}
-
-// ======================
-// ⏳ YEAR SYSTEM
-// ======================
-function nextYear() {
-  year++;
-
-  people.forEach(p => {
-
-    if (!p.alive) return;
-
-    p.age++;
-
-    // aging effects
-    if (p.age > 40) p.health -= 2;
-
-    // random life event 🎲
-    let r = Math.random();
-
-    if (r < 0.3) p.happiness += 5;
-    else if (r < 0.6) p.happiness -= 5;
-    else p.health -= 3;
-
-    // passing system 🕯️
-    if (p.age > 75 && Math.random() < 0.2) {
-      p.alive = false;
-      log(`${p.name} has passed away 🕯️`);
-    }
-
-  });
-
-  log(`Year ${year} has passed 🌍`);
-  render();
-}
-
-// ======================
-// 📅 STORY LOG
-// ======================
-function log(text) {
-  document.getElementById("log").innerHTML =
-    `<p>${text}</p>` + document.getElementById("log").innerHTML;
-}
-
-// ======================
-render();
-
-</script>
+<script src="script.js"></script>
 
 </body>
 </html>
