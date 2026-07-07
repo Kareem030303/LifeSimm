@@ -138,3 +138,14 @@ document.getElementById("story").innerHTML=
 player.story.join("<br><br>");
 
 }
+function ageUp(){
+
+    player.age++;
+
+    player.story.push(
+        "You are now age " + player.age
+    );
+
+    updateScreen();
+
+}
