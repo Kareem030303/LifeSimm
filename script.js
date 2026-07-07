@@ -1,10 +1,13 @@
-let player = {
+let player = 
     name:"",
     country:"",
     age:0,
     money:1000,
+    health:100,
+    alive:true,
     personality:[],
     story:[]
+};
 };
 
 
@@ -75,7 +78,13 @@ updateScreen();
 
 
 function ageUp(){
+function ageUp(){
 
+    if(player.alive == false){
+        return;
+    }
+
+    player.age++;
 player.age++;
 
 
@@ -147,5 +156,19 @@ function ageUp(){
     );
 
     updateScreen();
+
+}if(player.age >= 80){
+
+    let chance = Math.random();
+
+    if(chance < 0.15){
+        player.alive = false;
+
+        player.story.push(
+        "Age " + player.age + ": Your life has come to an end. Your legacy continues."
+        );
+
+        alert("Your character has passed away.");
+    }
 
 }
