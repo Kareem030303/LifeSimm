@@ -1,26 +1,30 @@
 body {
+    background: #111;
+    color: white;
     font-family: Arial;
-    background:#222;
-    color:white;
-    text-align:center;
-}
-
-.box {
-    background:#333;
-    padding:20px;
-    margin:20px auto;
-    width:80%;
-    border-radius:15px;
-}
-
-input, select, button {
-    padding:10px;
-    margin:8px;
-    border-radius:8px;
+    text-align: center;
 }
 
 button {
-    cursor:pointer;
-    background:#4CAF50;
-    color:white;
-      }
+    padding: 15px;
+    margin: 10px;
+    background: green;
+    color: white;
+    border: none;
+    border-radius: 8px;
+}
+
+input {
+    display: block;
+    margin: 10px auto;
+    padding: 12px;
+    width: 250px;
+}
+
+.box {
+    background: #333;
+    padding: 20px;
+    width: 300px;
+    margin: auto;
+    border-radius: 10px;
+}
