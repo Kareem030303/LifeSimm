@@ -1,52 +1,68 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>LifeSim 2.0</title>
+<title>LifeSimm Family</title>
 <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<h1>🌎 LifeSim 2.0</h1>
+<h1>👨‍👩‍👧 Create Your Family</h1>
 
 <div class="box">
 
-<h2>Create Your Avatar</h2>
+<input id="name" placeholder="Your Name">
 
-<input id="name" placeholder="Name">
+<input id="father" placeholder="Father Name">
 
-<select id="country">
-<option>United States</option>
-<option>Japan</option>
-<option>Brazil</option>
-<option>Mexico</option>
-<option>France</option>
-</select>
+<input id="mother" placeholder="Mother Name">
 
-<button onclick="startLife()">Start Life</button>
+<input id="sibling" placeholder="Sibling Name">
+
+<button onclick="createFamily()">Create Family</button>
 
 </div>
 
 
-<div class="box" id="life" style="display:none">
-
-<h2 id="profile"></h2>
-
-<p id="family"></p>
-
-<p id="stats"></p>
-
-<h3>📖 Life Story</h3>
-
-<div id="story"></div>
-
-<button onclick="ageUp()">Age Up</button>
-
-</div>
+<div id="result"></div>
 
 
-<script src="script.js"></script>
+<script>
+
+function createFamily(){
+
+let name = document.getElementById("name").value;
+let father = document.getElementById("father").value;
+let mother = document.getElementById("mother").value;
+let sibling = document.getElementById("sibling").value;
+
+
+document.getElementById("result").innerHTML = `
+
+<h2>${name}'s Life</h2>
+
+<p>👨 Father: ${father}</p>
+
+<p>👩 Mother: ${mother}</p>
+
+<p>👦 Sibling: ${sibling}</p>
+
+<p>❤️ Family Relationship: 100%</p>
+
+<button onclick="begin()">Begin Life</button>
+
+`;
+
+}
+
+
+function begin(){
+
+alert("Your life has started! 🎉");
+
+}
+
+</script>
 
 </body>
 </html>
-<button onclick="ageUp()">Age Up</button>
