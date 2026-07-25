@@ -95,3 +95,91 @@ document.getElementById("familyDisplay").innerHTML = `
 
 </body>
 </html>
+<h2>Age: <span id="age">0</span></h2>
+
+<button onclick="ageUp()">Age Up</button>
+
+<div id="event"></div>
+
+
+<script>
+
+let age = 0;
+
+
+function ageUp(){
+
+age++;
+
+document.getElementById("age").innerHTML = age;
+
+
+let event = "";
+
+
+if(age == 1){
+event = "👶 You learned to walk and started exploring the world.";
+}
+
+else if(age == 3){
+event = "🧸 You started preschool and began making friends.";
+}
+
+else if(age == 5){
+event = "🎒 You started elementary school.";
+}
+
+else if(age == 10){
+event = "📚 You are learning more subjects and building your personality.";
+}
+
+else if(age == 13){
+event = "🏫 You entered middle school. Friendships and interests start changing.";
+}
+
+else if(age == 15){
+event = "🚗 You are becoming more independent and discovering your goals.";
+}
+
+else if(age == 16){
+event = "🎓 You can start learning skills for your future career.";
+}
+
+else if(age == 18){
+event = "🎉 You became an adult. You can choose college, work, or training.";
+}
+
+else if(age == 21){
+event = "💼 You are building your adult life and career.";
+}
+
+else if(age == 25){
+event = "🏠 Many people begin serious careers, relationships, and independence.";
+}
+
+else if(age == 30){
+event = "📈 Your experience grows. Career and family decisions become important.";
+}
+
+else if(age == 40){
+event = "👨‍👩‍👧 You enter a new stage of life with more responsibilities.";
+}
+
+else if(age == 60){
+event = "🌅 Retirement planning and health become more important.";
+}
+
+else if(age == 80){
+event = "👴 You are entering your later years and reflecting on your journey.";
+}
+
+else {
+event = "📅 Another year passes. Your life continues to change.";
+}
+
+
+document.getElementById("event").innerHTML = event;
+
+}
+
+</script>
