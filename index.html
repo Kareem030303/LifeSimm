@@ -66,3 +66,25 @@ alert("Your life has started! 🎉");
 
 </body>
 </html>
+<h2>Select Gender</h2>
+
+<select id="gender">
+    <option value="Male">Male</option>
+    <option value="Female">Female</option>
+</select>
+
+<button onclick="saveCharacter()">Continue</button>
+
+<script>
+
+function saveCharacter(){
+
+let gender = document.getElementById("gender").value;
+
+localStorage.setItem("gender", gender);
+
+window.location.href = "family.html";
+
+}
+
+</script>
