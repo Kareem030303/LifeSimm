@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>LifeSimm - Family</title>
+
+<style>
+body {
+    font-family: Arial;
+    background: #222;
+    color: white;
+    text-align: center;
+}
+
+.container {
+    background: #333;
+    padding: 20px;
+    margin: 30px auto;
+    width: 350px;
+    border-radius: 10px;
+}
+
+input, button {
+    padding: 10px;
+    margin: 5px;
+    width: 90%;
+}
+
+button {
+    background: green;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.family-box {
+    background: #444;
+    padding: 15px;
+    margin-top: 20px;
+}
+</style>
+
+</head>
+
+<body>
+
+<h1>🏠 LifeSimm Family Creator</h1>
+
+<div class="container">
+
+<h2>Create Your Family</h2>
+
+<input id="player" placeholder="Your Name">
+
+<input id="father" placeholder="Father's Name">
+
+<input id="mother" placeholder="Mother's Name">
+
+<input id="sibling" placeholder="Sibling's Name">
+
+<button onclick="createFamily()">Create Family</button>
+
+<div class="family-box" id="familyDisplay">
+</div>
+
+</div>
+
+
+<script>
+
+function createFamily(){
+
+let player = document.getElementById("player").value;
+let father = document.getElementById("father").value;
+let mother = document.getElementById("mother").value;
+let sibling = document.getElementById("sibling").value;
+
+
+document.getElementById("familyDisplay").innerHTML = `
+
+<h2>${player}'s Family</h2>
+
+<p>👨 Father: ${father}</p>
+
+<p>👩 Mother: ${mother}</p>
+
+<p>👦 Sibling: ${sibling}</p>
+
+<p>❤️ Family Bond: 100%</p>
+
+`;
+
+}
+
+</script>
+
+</body>
+</html>
