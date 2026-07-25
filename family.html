@@ -183,3 +183,51 @@ document.getElementById("event").innerHTML = event;
 }
 
 </script>
+<h2>❤️ Relationships</h2>
+
+<p>Relationship Status: <span id="status">Single</span></p>
+
+<button onclick="datePerson()">Go On A Date</button>
+
+<div id="relationshipEvent"></div>
+
+
+<script>
+
+let relationship = "Single";
+
+
+function datePerson(){
+
+if(age < 13){
+
+document.getElementById("relationshipEvent").innerHTML =
+"❌ You are too young for dating.";
+
+}
+
+else if(age >= 13 && age < 18){
+
+relationship = "Dating";
+
+document.getElementById("status").innerHTML = relationship;
+
+document.getElementById("relationshipEvent").innerHTML =
+"❤️ You started a teenage relationship.";
+
+}
+
+else {
+
+relationship = "Dating";
+
+document.getElementById("status").innerHTML = relationship;
+
+document.getElementById("relationshipEvent").innerHTML =
+"❤️ You started an adult relationship.";
+
+}
+
+}
+
+</script>
