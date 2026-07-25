@@ -92,7 +92,130 @@ document.getElementById("familyDisplay").innerHTML = `
 }
 
 </script>
+family.html
 
+<body>
+
+<!-- Your buttons and game screen go here -->
+
+
+<button onclick="meetPerson()">Meet Someone</button>
+
+<button onclick="askDate()">Date Event</button>
+
+
+<div id="event"></div>
+
+
+<script>
+
+let age = 0;
+let relationshipStatus = "Single";
+let partner = "";
+let friendship = 0;
+
+
+// AGE BUTTON
+function ageUp(){
+
+age++;
+
+document.getElementById("age").innerHTML = age;
+
+let event = "Another year passes.";
+
+document.getElementById("event").innerHTML = event;
+
+
+// CHECK MARRIAGE
+if(age % 5 == 0){
+    marriageProposal();
+}
+
+}
+
+
+// FRIEND SYSTEM
+function meetPerson(){
+
+let choice = confirm("You met Alex. Become friends?");
+
+if(choice){
+
+friendship = 50;
+relationshipStatus = "Friend";
+
+document.getElementById("event").innerHTML =
+"🤝 You became friends with Alex!";
+
+}
+
+else{
+
+document.getElementById("event").innerHTML =
+"You decided not to become friends.";
+
+}
+
+}
+
+
+// DATING SYSTEM
+function askDate(){
+
+let choice = confirm("Alex asked you on a date. Accept?");
+
+if(choice){
+
+relationshipStatus = "Dating";
+
+partner = "Alex";
+
+document.getElementById("event").innerHTML =
+"❤️ You started dating Alex.";
+
+}
+
+else{
+
+document.getElementById("event").innerHTML =
+"You declined the date.";
+
+}
+
+}
+
+
+// MARRIAGE SYSTEM
+function marriageProposal(){
+
+if(age >= 25 && relationshipStatus == "Dating"){
+
+let choice = confirm(partner + " asked you to marry them. Accept?");
+
+if(choice){
+
+relationshipStatus = "Married";
+
+document.getElementById("event").innerHTML =
+"💍 You got married!";
+
+}
+
+else{
+
+document.getElementById("event").innerHTML =
+"You said not yet.";
+
+}
+
+}
+
+}
+
+</script>
+
+</body>
 </body>
 </html>
 <h2>Age: <span id="age">0</span></h2>
